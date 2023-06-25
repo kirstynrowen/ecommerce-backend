@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
         {
           model: Tag,
           through: ProductTag,
-          attributes: [],
           as: 'product_tags',
         },
       ],
@@ -26,13 +25,30 @@ router.get('/', async (req, res) => {
     res.status(500).json(error);
     console.log(error);
   }
-
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  try {
+    const productData = await Product.findByPk(req.params.id, {
+      include: [
+        { 
+          model: Category, 
+        },
+        {
+          model: Tag,
+          through: ProductTag,
+          as: 'product_tags',
+        },
+      ],
+    });
+    res.status(200).json(productData);
+  } catch (error) {
+    res.status(500).json(error);
+    console.log(error);
+  }
 });
 
 // create new product
