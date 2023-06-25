@@ -44,7 +44,11 @@ router.get('/:id', async (req, res) => {
         },
       ],
     });
-    res.status(200).json(productData);
+    if (!productData) {
+      res.status(404).json({ message: 'Product not found'});
+    } else {
+      res.status(200).json(productData);
+    }
   } catch (error) {
     res.status(500).json(error);
     console.log(error);
@@ -120,7 +124,7 @@ router.put('/:id', (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+     console.log(err);
       res.status(400).json(err);
     });
 });
@@ -135,7 +139,11 @@ router.delete('/:id', async (req, res) => {
         },
       },
     );
-    res.status(200).json(productData);
+    if (!productData) {
+      res.status(404).json({ message: 'Product not found'});
+    } else {
+      res.status(200).json(productData);
+    }
   } catch (error) {
     res.status(400).json(error);
     console.log(error);

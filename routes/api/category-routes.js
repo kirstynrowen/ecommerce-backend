@@ -24,7 +24,11 @@ router.get('/:id', async (req, res) => {
     const categoryData = await Category.findByPk(req.params.id, {
       include: [{ model: Product },],
     });
-    res.status(200).json(categoryData);
+    if (!categoryData) {
+      res.status(404).json({ message: 'Category not found'});
+    } else {
+      res.status(200).json(categoryData);
+    }
   } catch (error) {
     res.status(500).json(error);
     console.log(error);
@@ -75,7 +79,11 @@ router.delete('/:id', async (req, res) => {
         },
       },
     );
-    res.status(200).json(categoryData);
+    if (!categoryData) {
+      res.status(404).json({ message: 'Category not found'});
+    } else {
+      res.status(200).json(categoryData);
+    }
   } catch (error) {
     res.status(400).json(error);
     console.log(error);

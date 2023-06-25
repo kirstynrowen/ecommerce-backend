@@ -25,7 +25,7 @@ This is a backend application built to organize data belonging to an e-commerce 
 
 ## Video Walkthrough
 
-A video walkthrough of the application can be viewed [here.](https://www.npmjs.com/package/mysql)
+A video walkthrough of the application can be viewed [here.](https://www.loom.com/share/46d15ff94aab4d4fbe8cb56be6140479?sid=969ae573-4f89-4422-93e0-53ef5159ce79)
 
 ## Questions and Contact Information
 

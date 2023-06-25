@@ -33,7 +33,11 @@ router.get('/:id', async (req, res) => {
       through: ProductTag,
       as: 'tag_products',
     });
-    res.status(200).json(tagData);
+    if (!tagData) {
+      res.status(404).json({ message: 'Tag not found'});
+    } else {
+      res.status(200).json(tagData);
+    }
   } catch (error) {
     res.status(500).json(error);
     console.log(error);
@@ -83,7 +87,11 @@ router.delete('/:id', async (req, res) => {
         },
       },
     );
-    res.status(200).json(tagData);
+    if (!tagData) {
+      res.status(404).json({ message: 'Tag not found'});
+    } else {
+      res.status(200).json(tagData);
+    }
   } catch (error) {
     res.status(400).json(error);
     console.log(error);
